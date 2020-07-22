@@ -4,7 +4,7 @@ import java.net.*;
 import java.io.*;
 
 public class UDPClient {
-    public static void main(String args[]) {
+    public static void main(String...args) {
         // args give message contents and server hostname
         DatagramSocket aSocket = null;
         try {
