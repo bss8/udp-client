@@ -17,7 +17,7 @@ public class UDPClient {
             byte[] buffer = new byte[1000];
             DatagramPacket reply = new DatagramPacket(buffer, buffer.length);
             aSocket.receive(reply);
-            System.out.println("Reply: " + new String(reply.getData()));
+            System.out.println("Reply from " + reply.getAddress().getHostAddress() + ": " + new String(reply.getData()));
         } catch (SocketException e) {
             System.out.println("Socket: " + e.getMessage());
         } catch (IOException e) {
