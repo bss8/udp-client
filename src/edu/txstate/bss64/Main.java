@@ -63,6 +63,10 @@ public class Main {
     }
 
     private static void optionTwo() {
+        UDPClientIterative.main();
+    }
+
+    private static void optionThree() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter command with arguments: ");
         String cmd = scanner.nextLine();
@@ -84,10 +88,6 @@ public class Main {
         } else {
             throw new IllegalArgumentException("Command entered is not valid!");
         }
-    }
-
-    private static void optionThree() {
-
     }
 
     /**
@@ -135,10 +135,12 @@ public class Main {
                         "OPTION 1: Unmodified UPDClient - accepts one message, server will reply, program terminates.\n" +
                         "\t[String w/ whitespace]: java -jar 01_client.jar \"Hello World!\" <hostname> \n" +
                         "\t[Single string]: java -jar Hello <hostname>\n\n" +
-                        "OPTION 2: Interactive UDPClient - prompts for a message, server will return it as-is.\n" +
+
+                        "OPTION 2: Interactive UDPClient - continues to prompt for a message, server will return it as-is.\n" +
                         "\tjava -jar 01_client.jar <hostname>\n" +
                         "\tThen enter a message, with or without spaces. No quotes required.\n" +
                         "\tCTRL + C to terminate the program.\n\n" +
+
                         "OPTION 3: Command Execution - prompts for a valid Linux or Windows cmd (depending on OS).\n" +
                         "Will attempt to execute and return any available output.\n" +
                         "\tjava -jar 01_client.jar command <args1> ...<argN> <hostname>\n\n" +
