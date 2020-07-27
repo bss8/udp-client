@@ -137,10 +137,7 @@ public class Main {
      * the server will not process the command.
      */
     private static void optionThree() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter command with arguments: ");
-        String cmd = scanner.nextLine();
-        UDPClient.main(cmd, HOST);
+        UDPClientIterative.main(HOST);
     }
 
 

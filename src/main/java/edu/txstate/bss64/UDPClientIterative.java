@@ -33,7 +33,7 @@ public class UDPClientIterative implements ClientBehavior {
         try (DatagramSocket aSocket = new DatagramSocket()) {
             Scanner scanner = new Scanner(System.in);
             while (true) {
-                System.out.print("\nEnter message: ");
+                System.out.print("\nEnter message (or command, if server is in cmd exec mode): ");
                 String usrMsg = scanner.nextLine();
                 ClientBehavior.sendMessage(aSocket, usrMsg, args[0]);
                 ClientBehavior.receiveReply(aSocket);
