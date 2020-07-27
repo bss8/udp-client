@@ -35,6 +35,7 @@ public class Main {
     private static String OS;
     private static String HOST;
 
+    // static init block to get the IP address and OS name of the machine on which client will run
     static {
         try (final DatagramSocket socket = new DatagramSocket()) {
             socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
@@ -50,6 +51,9 @@ public class Main {
      * UDP is akin to sending a message in a bottle. We know we sent the message out.
      * We are not guaranteed that it will be received.
      * https://stackoverflow.com/questions/5830810/determine-if-server-is-listening-when-using-udp
+     * We print instructions to the screen and prompt the user to provide us the hostname or IP of
+     * the server that should receive their message. Then, the user provides an option code (1-3), regarding
+     * which type of client they want to initiate.
      * @param args
      * @throws Exception
      */
@@ -64,8 +68,8 @@ public class Main {
     }
 
     /**
-     *
-     * @param OPT_CODE
+     * Helper function to route the user selected option code to the right function.
+     * @param OPT_CODE code obtained from the user.
      * @throws Exception
      */
     private static void routeChoice(int OPT_CODE) throws Exception {
@@ -87,12 +91,20 @@ public class Main {
         }
     }
 
+    /**
+     * Prompts the user for an option code.
+     * @return option code as selected by the user
+     */
     private static String getUserOptionChoice() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("\nSelect option (1, 2, or 3): ");
         return scanner.next();
     }
 
+    /**
+     * Prompts the user for the server IP or fully qualified domain name (FQDN).
+     * @return host name or IP address
+     */
     private static String getHost() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("\nEnter server IP or hostname (FQDN): ");
@@ -100,7 +112,8 @@ public class Main {
     }
 
     /**
-     *
+     * One-off message mode. Will prompt the user once for a message and send it to the server, terminating after
+     * a reply is received.
      */
     private static void optionOne() {
         Scanner scanner = new Scanner(System.in);
@@ -111,14 +124,17 @@ public class Main {
     }
 
     /**
-     *
+     * Iterative prompt mode - the client will keep asking the user to input a message. It will keep prompting
+     * for a message until the process is killed.
      */
     private static void optionTwo() {
         UDPClientIterative.main(HOST);
     }
 
     /**
-     *
+     * Command execution option. Message sent to the UDP server should be an executable command.
+     * If the server is running on a Linux environment and a Windows command is sent (or vice versa),
+     * the server will not process the command.
      */
     private static void optionThree() {
         Scanner scanner = new Scanner(System.in);
@@ -130,7 +146,7 @@ public class Main {
 
 
     /**
-     *
+     * Prints instructions for the user, explaining how to use this program.
      */
     private static void printHelp() {
         System.out.print(
@@ -150,4 +166,4 @@ public class Main {
                         "Note: last argument must always be the hostname of the server."
         );
     }
-}
+} // end class Main

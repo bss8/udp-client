@@ -24,8 +24,9 @@ import java.util.Scanner;
 
 /**
  * @author Borislav S. Sabotinov
- * This client will prompt the user one time for a host, then
- *  continuously prompt for a new message. The message will be sent to the server, which must be running.
+ * This client will prompt the user one time for a host, then continuously prompt
+ * for a new message. The message will be sent to the server, which must be running.
+ * First parameter args[0] passed from the CLI is the server hostname or IP address.
  */
 public class UDPClientIterative implements ClientBehavior {
     public static void main(String...args) {
@@ -34,7 +35,6 @@ public class UDPClientIterative implements ClientBehavior {
             while (true) {
                 System.out.print("\nEnter message: ");
                 String usrMsg = scanner.nextLine();
-
                 ClientBehavior.sendMessage(aSocket, usrMsg, args[0]);
                 ClientBehavior.receiveReply(aSocket);
             }
@@ -44,5 +44,4 @@ public class UDPClientIterative implements ClientBehavior {
             System.out.println("IO: " + e.getMessage());
         }
     }
-}
-
+} // end class UDPClientIterative

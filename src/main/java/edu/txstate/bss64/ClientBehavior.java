@@ -23,12 +23,18 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 
 /**
+ * @author Borislav S. Sabotinov
  * This interface specifies common behavior for clients.
  * They send messages and receive replies. The intent is to improve code readability and minimize duplication
  */
 public interface ClientBehavior {
     int SERVER_PORT = 2587;
 
+    /**
+     * Defines a standard method for how all clients should receive a reply from a UDP server.
+     * @param aSocket DatagramSocket created by caller (Main)
+     * @throws IOException
+     */
     static void receiveReply(DatagramSocket aSocket) throws IOException {
         byte[] buffer = new byte[1024];
         DatagramPacket reply = new DatagramPacket(buffer, buffer.length);
@@ -37,10 +43,16 @@ public interface ClientBehavior {
         System.out.println("Reply from " + reply.getAddress().getHostAddress() + ": " + stringReply);
     }
 
+    /**
+     * Defines a standard method for how all clients should send a message to a UDP server.
+     * @param aSocket DatagramSocket created by caller (Main)
+     * @param args args[0] is the user message, args[1] is the hostname or IP address.
+     * @throws IOException
+     */
     static void sendMessage(DatagramSocket aSocket, String... args) throws IOException {
-        byte[] m = args[0].getBytes();
+        byte[] message = args[0].getBytes();
         InetAddress aHost = InetAddress.getByName(args[1]);
-        DatagramPacket request = new DatagramPacket(m, m.length, aHost, SERVER_PORT);
+        DatagramPacket request = new DatagramPacket(message, message.length, aHost, SERVER_PORT);
         aSocket.send(request);
     }
-}
+} // end interface ClientBehavior

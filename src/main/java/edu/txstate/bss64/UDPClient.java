@@ -21,7 +21,9 @@ import java.net.*;
 import java.io.*;
 
 /**
- *
+ * @author Borislav S. Sabotinov
+ * Standard UDP client, which will send a message and receive a reply.
+ * May be used by Main to send a command instead, for server to execute.
  */
 public class UDPClient implements ClientBehavior {
     public static void main(String...args) {
@@ -35,5 +37,5 @@ public class UDPClient implements ClientBehavior {
             System.out.println("IO: " + e.getMessage());
         }
     }
-}
+} // end class UDPClient
 
