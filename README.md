@@ -12,3 +12,22 @@ classes.
 
 ###Class diagram
 ![UDP Client class diagram](src/main/resources/img/UDPClient.png)
+
+## To Build
+#####Windows: 
+`cd scripts`    
+`build.bat`
+
+#####Linux: 
+`cd scripts`    
+`./build.sh`
+
+## To Run
+Prerequisite: build the application. 
+#####Windows: 
+`cd scripts`    
+`run.bat`
+
+#####Linux: 
+`cd scripts`    
+`./run.sh`
